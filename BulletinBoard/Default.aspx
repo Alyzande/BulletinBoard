@@ -9,7 +9,7 @@
 <body>
     <form id="form1" runat="server">
         <div>
-            <a href="index.aspx">Index</a>
+            <h1><a href="index.aspx">Index</a></h1>
         </div>
     </form>
 </body>

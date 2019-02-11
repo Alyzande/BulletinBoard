@@ -33,7 +33,9 @@ namespace BulletinBoard
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
                 DataListItem i = e.Item;
-                System.Data.DataRowView r = ((System.Data.DataRowView)e.Item.DataItem); // 'r' represents the next row in the table that has been passed here via the 'bind' function.
+                //  System.Data.DataRowView r = (System.Data.DataRowView)e.Item.DataItem; // 'r' represents the next row in the table that has been passed here via the 'bind' function.
+                System.Data.DataRowView r = (System.Data.DataRowView)Session["Boards"]; // 'r' represents the next row in the table that has been passed here via the 'bind' function.
+               
 
                 // Find the label controls that are associated with this data item.
 
@@ -67,12 +69,20 @@ namespace BulletinBoard
                 SQLDatabase.DatabaseRow new_row = posts_table.NewRow();    // Create a new based on the format of the rows in this table.
 
                 string new_id = posts_table.GetNextID().ToString();    // Use this to create a new ID number for this module. This new ID follows on from the last row's ID number.
-                string creatorname = "1";
-                int creatorid = int.Parse(creatorname);
+                SQLDatabase.DatabaseTable loggedintable = new SQLDatabase.DatabaseTable("Users", "SELECT Username from Users WHERE ID = " + Session["LoggedinID"]);  // get username from userdb using sessionid
+
+                //get username from loggedintable where userid == LoggedinID
+                string creatorname = loggedintable.GetRow(0)["Username"];
+                string str = "";
+                if (Session["LoggedinID"] != null)
+                {
+                    str = Session["LoggedinID"].ToString();
+                }
+                int creatorid = Convert.ToInt32(str);
                 string boardnum = "1";
                 int boardid = int.Parse(boardnum);
-                string creationdate = "";
-                string creationtime = "";
+                string creationdate = DateTime.Today.ToString("ddd dd MMM yyyy");
+                string creationtime = DateTime.Now.ToString("HH:mm");
 
                 new_row["ID"] = new_id;                                 // Add some data to the row (using the columns names in the table).
                 new_row["Text"] = CreatePostTextBox.Text.ToString();            // post contents.
