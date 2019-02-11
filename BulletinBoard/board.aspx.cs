@@ -12,24 +12,26 @@ namespace BulletinBoard
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["LoggedinID"] == null)
+            if (!IsPostBack)
             {
-                Response.Redirect("~/index.aspx");
+                if (Session["LoggedinID"] == null)
+                {
+                    Response.Redirect("~/index.aspx");
+                }
+
+                SQLDatabase.DatabaseTable boards_table = new SQLDatabase.DatabaseTable("Boards");   // load boards db
+
+                boards_table.Bind(DataList1);
+
+                SQLDatabase.DatabaseTable loggedintable = new SQLDatabase.DatabaseTable("Users", "SELECT Username from Users WHERE ID = " + Session["LoggedinID"]);  // get username from userdb using sessionid
+
+                //get username from loggedintable where userid == LoggedinID
+
+                string Username = loggedintable.GetRow(0)["Username"];
+
+                Label2.Text = Session["LastLoginDay"].ToString();
+                Label1.Text = Username;
             }
-
-            SQLDatabase.DatabaseTable boards_table = new SQLDatabase.DatabaseTable("Boards");   // load boards db
-
-            boards_table.Bind(DataList1);
-
-            SQLDatabase.DatabaseTable loggedintable = new SQLDatabase.DatabaseTable("Users", "SELECT Username from Users WHERE ID = " + Session["LoggedinID"]);  // get username from userdb using sessionid
-            
-            //get username from loggedintable where userid == LoggedinID
-           
-            string Username = loggedintable.GetRow(0)["Username"];
-            
-            Label2.Text = Session["LastLoginDay"].ToString();
-            Label1.Text = Username;
-            
         }
 
         protected void DataList1_ItemDataBound(object sender, DataListItemEventArgs e)
@@ -69,7 +71,7 @@ namespace BulletinBoard
 
                 SQLDatabase.DatabaseRow row = boards_table.GetRow(index);   // Get the row from the table.
 
-                Session["Topic"] = row;    // Store this on the Session, so we can access this module in the other page. 
+                Session["Boards"] = row;    // Store this on the Session, so we can access this module in the other page. 
 
                 Response.Redirect("post.aspx"); // Now to go the other page to view the module information...
             }
@@ -77,11 +79,11 @@ namespace BulletinBoard
 
         protected void CreateBoardButton_Click(object sender, EventArgs e)
         {
-            SQLDatabase.DatabaseTable boards_table = new SQLDatabase.DatabaseTable("Boards");   // Need to load the table we're going to insert into.
+            SQLDatabase.DatabaseTable boards_table2 = new SQLDatabase.DatabaseTable("Boards");   // Need to load the table we're going to insert into.
 
-            SQLDatabase.DatabaseRow new_row = boards_table.NewRow();    // Create a new based on the format of the rows in this table.
+            SQLDatabase.DatabaseRow new_row = boards_table2.NewRow();    // Create a new based on the format of the rows in this table.
 
-            string new_id = boards_table.GetNextID().ToString();    // Use this to create a new ID number for this module. This new ID follows on from the last row's ID number.
+            string new_id = boards_table2.GetNextID().ToString();    // Use this to create a new ID number for this module. This new ID follows on from the last row's ID number.
             string str = "";
             if (Session["LoggedinID"] != null)
             {
@@ -94,7 +96,7 @@ namespace BulletinBoard
             new_row["Name"] = CreateBoardTextbox.Text.ToString();            // topic name.
             new_row["CreatorID"] = creatorid.ToString();
 
-            boards_table.Insert(new_row);                           // Execute the insert - add this new row into the database.
+            boards_table2.Insert(new_row);                           // Execute the insert - add this new row into the database.
         }
 
         protected void LogoutButton_Click(object sender, EventArgs e)

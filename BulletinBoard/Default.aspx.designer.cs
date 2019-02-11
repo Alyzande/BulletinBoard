@@ -11,7 +11,7 @@ namespace BulletinBoard
 {
 
 
-    public partial class Default
+    public partial class _default
     {
 
         /// <summary>
