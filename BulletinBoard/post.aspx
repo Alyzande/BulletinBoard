@@ -20,7 +20,6 @@
             <br />
             <asp:Button ID="LogoutButton" runat="server" Text="Log Out" OnClick="LogoutButton_Click" />
             <br />
-            <br />
             <h2>Posts on this Topic</h2>
           <p>topicnamehere</p>
              <asp:DataList ID="DataList2" runat="server" OnItemDataBound="DataList2_ItemDataBound" >
@@ -31,8 +30,20 @@
                                 <asp:Label ID="PostsText_Label" runat="server" Text="PostsText"></asp:Label>
                             </td>
 
-                            <td style="width: 200px; background-color: #f0f0f0;">
+                            <td style="width: 60px; background-color: #f0f0f0;">
                                 <asp:Label ID="PostsCreatorID_Label" runat="server" Text="PostsCreatorID"></asp:Label>
+                            </td>
+
+                             <td style="width: 200px; background-color: #f0f0f0;">
+                                <asp:Label ID="PostCreatorName_Label" runat="server" Text="Post Creator Name"></asp:Label>
+                            </td>
+
+                             <td style="width: 100px; background-color: #f0f0f0;">
+                                <asp:Label ID="Day_Label" runat="server" Text="Creation Date"></asp:Label>
+                            </td>
+
+                             <td style="width: 100px; background-color: #f0f0f0;">
+                                <asp:Label ID="Time_Label" runat="server" Text="Creation Time"></asp:Label>
                             </td>
 
                         </tr>
