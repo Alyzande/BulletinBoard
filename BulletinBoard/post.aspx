@@ -30,10 +30,6 @@
                                 <asp:Label ID="PostsText_Label" runat="server" Text="PostsText"></asp:Label>
                             </td>
 
-                            <td style="width: 60px; background-color: #f0f0f0;">
-                                <asp:Label ID="PostsCreatorID_Label" runat="server" Text="PostsCreatorID"></asp:Label>
-                            </td>
-
                              <td style="width: 200px; background-color: #f0f0f0;">
                                 <asp:Label ID="PostCreatorName_Label" runat="server" Text="Post Creator Name"></asp:Label>
                             </td>
@@ -52,7 +48,7 @@
             </asp:DataList>
              <br />
             <hr />
-             <h2>Create A New Topic/Board</h2>
+             <h2>Create A New Post</h2>
 
             <br />
             <asp:TextBox ID="CreatePostTextBox" runat="server" Width="400px" Height="3em">Your Post on the Topic?</asp:TextBox>

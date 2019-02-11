@@ -52,7 +52,7 @@ namespace BulletinBoard
 
                 Button ViewButton = (Button)e.Item.FindControl("ViewButton");   // Find the button in this row.
                 ViewButton.CommandArgument = i.ItemIndex.ToString();    // Allocate the row number to the 'command argument' property of the button, so we can identify which button was pressed later.
-                ViewButton.CommandName = "View";
+                ViewButton.CommandName = "View Posts";
             }
         }
 

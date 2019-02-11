@@ -40,12 +40,17 @@ namespace BulletinBoard
                 Label PostsText_LBL = (Label)e.Item.FindControl("PostsText_Label");       // Find the text Label.
                 Label PostsCreator_LBL = (Label)e.Item.FindControl("PostsCreatorID_Label"); // Find the creator ID Label.
                 //Label PostsBoardID_LBL = (Label)e.Item.FindControl("PostsBoardID_Label"); // Find the board ID Label.
+                Label PostsCreatorName_LBL = (Label)e.Item.FindControl("PostCreatorName_Label"); // Find the creator ID Label.
                 Label DateCreated_LBL = (Label)e.Item.FindControl("Day_Label"); // Find the date created Label.
                 Label TimeCreated_LBL = (Label)e.Item.FindControl("Time_Label"); // Find the date created Label.
 
+                 SQLDatabase.DatabaseTable users_table = new SQLDatabase.DatabaseTable("Users", "SELECT Username from Users WHERE ID = " + r["CreatorID"].ToString());
+                string Username = users_table.GetRow(0)["Username"];
+
                 PostsText_LBL.Text = r["Text"].ToString();           // Topic name.
-                PostsCreator_LBL.Text = r["CreatorID"].ToString();     // Creator ID number.
-               //PostsBoardID_LBL.Text = r["BoardID"].ToString();     // Board ID number.
+                //PostsCreator_LBL.Text = r["CreatorID"].ToString();     // Creator ID number.
+                PostsCreatorName_LBL.Text = Username;     // Creator ID number.
+                                                                       //PostsBoardID_LBL.Text = r["BoardID"].ToString();     // Board ID number.
                 DateCreated_LBL.Text = r["DateCreated"].ToString();     // date created.
                 TimeCreated_LBL.Text = r["TimeCreated"].ToString();     // Time created
 
