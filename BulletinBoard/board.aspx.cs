@@ -69,7 +69,7 @@ namespace BulletinBoard
 
                 SQLDatabase.DatabaseRow row = boards_table.GetRow(index);   // Get the row from the table.
 
-                Session["BoardID"] = row;    // Store this on the Session, so we can access this module in the other page. 
+                Session["Topic"] = row;    // Store this on the Session, so we can access this module in the other page. 
 
                 Response.Redirect("post.aspx"); // Now to go the other page to view the module information...
             }
@@ -88,7 +88,6 @@ namespace BulletinBoard
                 str = Session["LoggedinID"].ToString();
             }
 
-           // string creatorname = "1";
             int creatorid = int.Parse(str);
 
             new_row["ID"] = new_id;                                 // Add some data to the row (using the columns names in the table).

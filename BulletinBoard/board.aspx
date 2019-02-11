@@ -37,7 +37,7 @@
                             </td>
 
                             <td style="width: 100px; background-color: #f0f0f0;">
-                                <asp:Button ID="ViewButton" Width="100%" runat="server" Text="View" />
+                                 <asp:Button ID="ViewButton" Width="100%" runat="server" Text="View" />
                             </td>
 
                         </tr>

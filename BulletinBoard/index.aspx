@@ -19,7 +19,7 @@
                 <br />
             username
                 <asp:TextBox ID="UsernameTextbox" runat="server"></asp:TextBox>
-                TRY: jeff1, marvin1<br />
+                TRY: jeff1 (admin), marvin1<br />
             password
                 <asp:TextBox ID="PasswordTextbox" runat="server"></asp:TextBox>
                 TRY: 123456, qwerty<br />
