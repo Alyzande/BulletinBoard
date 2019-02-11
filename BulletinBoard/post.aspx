@@ -26,19 +26,19 @@
                 <ItemTemplate>
                     <table>
                         <tr>
-                            <td style="width: 600px; background-color: #f0f0f0;">
+                            <td style="width: 400px; background-color: #f0f0f0;">
                                 <asp:Label ID="PostsText_Label" runat="server" Text="PostsText"></asp:Label>
                             </td>
 
-                             <td style="width: 200px; background-color: #f0f0f0;">
+                             <td style="width: 150px; background-color: #f0f0f0;">
                                 <asp:Label ID="PostCreatorName_Label" runat="server" Text="Post Creator Name"></asp:Label>
                             </td>
 
-                             <td style="width: 100px; background-color: #f0f0f0;">
+                             <td style="width: 200px; background-color: #f0f0f0;">
                                 <asp:Label ID="Day_Label" runat="server" Text="Creation Date"></asp:Label>
                             </td>
 
-                             <td style="width: 100px; background-color: #f0f0f0;">
+                             <td style="width: 200px; background-color: #f0f0f0;">
                                 <asp:Label ID="Time_Label" runat="server" Text="Creation Time"></asp:Label>
                             </td>
 

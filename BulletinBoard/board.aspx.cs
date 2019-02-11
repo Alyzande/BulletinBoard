@@ -24,6 +24,7 @@ namespace BulletinBoard
             SQLDatabase.DatabaseTable loggedintable = new SQLDatabase.DatabaseTable("Users", "SELECT Username from Users WHERE ID = " + Session["LoggedinID"]);  // get username from userdb using sessionid
             
             //get username from loggedintable where userid == LoggedinID
+           
             string Username = loggedintable.GetRow(0)["Username"];
             
             Label2.Text = Session["LastLoginDay"].ToString();
@@ -52,7 +53,7 @@ namespace BulletinBoard
 
                 Button ViewButton = (Button)e.Item.FindControl("ViewButton");   // Find the button in this row.
                 ViewButton.CommandArgument = i.ItemIndex.ToString();    // Allocate the row number to the 'command argument' property of the button, so we can identify which button was pressed later.
-                ViewButton.CommandName = "View Posts";
+                ViewButton.CommandName = "View";
             }
         }
 
@@ -68,7 +69,7 @@ namespace BulletinBoard
 
                 SQLDatabase.DatabaseRow row = boards_table.GetRow(index);   // Get the row from the table.
 
-                Session["ID"] = row;    // Store this on the Session, so we can access this module in the other page. 
+                Session["BoardID"] = row;    // Store this on the Session, so we can access this module in the other page. 
 
                 Response.Redirect("post.aspx"); // Now to go the other page to view the module information...
             }
@@ -81,8 +82,14 @@ namespace BulletinBoard
             SQLDatabase.DatabaseRow new_row = boards_table.NewRow();    // Create a new based on the format of the rows in this table.
 
             string new_id = boards_table.GetNextID().ToString();    // Use this to create a new ID number for this module. This new ID follows on from the last row's ID number.
-            string creatorname = "1";
-            int creatorid = int.Parse(creatorname);
+            string str = "";
+            if (Session["LoggedinID"] != null)
+            {
+                str = Session["LoggedinID"].ToString();
+            }
+
+           // string creatorname = "1";
+            int creatorid = int.Parse(str);
 
             new_row["ID"] = new_id;                                 // Add some data to the row (using the columns names in the table).
             new_row["Name"] = CreateBoardTextbox.Text.ToString();            // topic name.

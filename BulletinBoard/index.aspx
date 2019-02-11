@@ -22,7 +22,7 @@
                 TRY: jeff1, marvin1<br />
             password
                 <asp:TextBox ID="PasswordTextbox" runat="server"></asp:TextBox>
-                TRY: 123456, password<br />
+                TRY: 123456, qwerty<br />
             <asp:Button ID="LoginButton" runat="server" Text="Login" OnClick="LoginButton_Click" />
                 <br />
             <asp:Label ID="ErrorLabel" runat="server" Text=""></asp:Label>
