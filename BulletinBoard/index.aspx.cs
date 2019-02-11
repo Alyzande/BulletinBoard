@@ -11,7 +11,7 @@ namespace BulletinBoard
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            SQLDatabase.DatabaseTable users_table = new SQLDatabase.DatabaseTable("Users");   // Need to load the table we're going to display...
+            SQLDatabase.DatabaseTable users_table = new SQLDatabase.DatabaseTable("Users");   // Need to load the table we're going to display
 
             //  users_table.Bind(DataList4);
 
@@ -40,20 +40,37 @@ namespace BulletinBoard
                 UserTypeHolder = users_table.GetRow(i)["UserType"];
 
                 if (UserNameHolder == UserText)
-                    //if usernames match
+                //if usernames match
                 {
                     if (PasswordHolder == PassText)
-                        //if passwords also match
+                    //if passwords also match
                     {  //Log them in
                        //store info in session variable to be accessed later
                         Session["LoggedinID"] = userIdHolder;
                         //Can call it later with 
                         //string abc = Session["LoggedinID"].ToString();
 
-                        //update last loggin in date??
-                        DateTime thisDay = DateTime.Today;
-                        Session["LastLoginTime"] = thisDay;
+                        //update last loggin in date
+                       
+                        Session["LastLoginDay"] = DateTime.Today.ToString("ddd dd MMM yyyy");
+                        Session["LastLoginTime"] = DateTime.Now.ToString("HH:mm");
+                        //ErrorLabel.Text = "Logging in as " + Session["LoggedinID"].ToString() + "...";
 
+                        //update the database with the logging in date and logging in time
+
+
+                        for (int n = 0; n < users_table.RowCount; ++n)
+                        {
+                            SQLDatabase.DatabaseRow row = users_table.GetRow(n); //get current ID.
+                            if (userIdHolder == users_table.GetRow(n)["ID"]) //if userID is the same as it's in the row
+                            {
+                                
+                                row["LastLoginDate"] = Session["LastLoginDay"].ToString();
+                                row["LastLoginTime"] = Session["LastLoginTime"].ToString();
+                                users_table.Update(row);
+                            }
+                        }
+                        
                         //go to boards page
                         Response.Redirect("~/board.aspx");
                     }
@@ -61,8 +78,10 @@ namespace BulletinBoard
                 }
                 else ErrorLabel.Text = "No user by that name!";
             }
- 
-           
+
+
         }
+
+
     }
 }

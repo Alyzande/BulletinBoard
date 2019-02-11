@@ -11,9 +11,21 @@ namespace BulletinBoard
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["LoggedinID"] == null)
+            {
+                Response.Redirect("~/index.aspx");
+            }
             SQLDatabase.DatabaseTable posts_table = new SQLDatabase.DatabaseTable("Posts");   // Need to load the table we're going to display...
 
             posts_table.Bind(DataList2);
+
+            SQLDatabase.DatabaseTable loggedintable = new SQLDatabase.DatabaseTable("Users", "SELECT Username from Users WHERE ID = " + Session["LoggedinID"]);  // get username from userdb using sessionid
+
+            //get username from loggedintable where userid == LoggedinID
+            string Username = loggedintable.GetRow(0)["Username"];
+
+            Label2.Text = Session["LastLoginDay"].ToString();
+            Label1.Text = Username;
         }
 
         protected void DataList2_ItemDataBound(object sender, DataListItemEventArgs e)
@@ -61,6 +73,12 @@ namespace BulletinBoard
                 posts_table.Insert(new_row);                           // Execute the insert - add this new row into the database.
             }
 
+        }
+
+        protected void LogoutButton_Click(object sender, EventArgs e)
+        {
+            Session.Abandon();
+            Response.Redirect("~/index.aspx");
         }
     }
 }

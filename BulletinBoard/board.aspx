@@ -16,13 +16,12 @@
             You are logged in as:
             <asp:Label ID="Label1" runat="server" Text="User's Name Displayed here"></asp:Label>
             <br />
-            Else (user is not logged in)
-                user is redirected to
-            <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/index.aspx">Index</asp:HyperLink>
+            Your login date was:
+            <asp:Label ID="Label2" runat="server" Text="Users login date displayed here"></asp:Label>
+<br />
+            <asp:Button ID="LogoutButton" runat="server" Text="Log Out" OnClick="LogoutButton_Click" />
             <br />
-            <br />
-            [boards go here]<br />
-            <br />
+            <asp:HyperLink ID="HyperLink7" runat="server" NavigateUrl="~/post.aspx" Font-Bold="True" Font-Size="Large">VIEW ALL POSTS</asp:HyperLink>
             <br />
             <h2>Browse Topics</h2>
             <asp:DataList ID="DataList1" runat="server" OnItemDataBound="DataList1_ItemDataBound" OnItemCommand="DataList1_ItemCommand">

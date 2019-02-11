@@ -20,6 +20,8 @@
                 user is redirected to
             <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/index.aspx">Index</asp:HyperLink>
             <br />
+            <asp:Button ID="Logout" runat="server" Text="Log Out" OnClick="Logout_Click" />
+            <br />
             <br />
             <h2>Account Management</h2>
             <h3>Your Details</h3>

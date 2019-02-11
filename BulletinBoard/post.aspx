@@ -11,18 +11,18 @@
         <div>
             <h1>Posts</h1>
             <asp:HyperLink ID="HyperLink5" runat="server" NavigateUrl="~/index.aspx">Index</asp:HyperLink>
-            &nbsp; &gt;&gt; <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/board.aspx">Boards</asp:HyperLink>&nbsp;&gt;&gt; Post<br />
+            &nbsp; &gt;&gt; <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/board.aspx">Boards</asp:HyperLink>&nbsp;&nbsp;&gt;&gt; Post<br />
             If user has logged in: 
             <asp:Label ID="Label1" runat="server" Text="User's Name Displayed here"></asp:Label>
             <br />
-            Else (user is not logged in)
-                user is redirected to
-            <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/index.aspx">Index</asp:HyperLink>
-            
+           Your login date was:
+            <asp:Label ID="Label2" runat="server" Text="Users login date displayed here"></asp:Label>
+            <br />
+            <asp:Button ID="LogoutButton" runat="server" Text="Log Out" OnClick="LogoutButton_Click" />
             <br />
             <br />
-            <h2>Boards</h2>
-          <p>Choose your Topic</p>
+            <h2>Posts on this Topic</h2>
+          <p>topicnamehere</p>
              <asp:DataList ID="DataList2" runat="server" OnItemDataBound="DataList2_ItemDataBound" >
                 <ItemTemplate>
                     <table>

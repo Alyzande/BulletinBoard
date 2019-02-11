@@ -19,10 +19,10 @@
                 <br />
             username
                 <asp:TextBox ID="UsernameTextbox" runat="server"></asp:TextBox>
-                <br />
+                TRY: jeff1, marvin1<br />
             password
                 <asp:TextBox ID="PasswordTextbox" runat="server"></asp:TextBox>
-                <br />
+                TRY: 123456, password<br />
             <asp:Button ID="LoginButton" runat="server" Text="Login" OnClick="LoginButton_Click" />
                 <br />
             <asp:Label ID="ErrorLabel" runat="server" Text=""></asp:Label>

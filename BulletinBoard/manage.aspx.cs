@@ -11,9 +11,14 @@ namespace BulletinBoard
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["LoggedinID"] == null)
+            {
+                Response.Redirect("~/index.aspx");
+            }
             SQLDatabase.DatabaseTable users_table = new SQLDatabase.DatabaseTable("Users");   // Need to load the table we're going to display...
 
             users_table.Bind(DataList3);
+
 
         }
         protected void DataList3_ItemDataBound(object sender, DataListItemEventArgs e)
@@ -87,6 +92,12 @@ namespace BulletinBoard
         protected void Button3_Click(object sender, EventArgs e)
         {
             //delete user
+        }
+
+        protected void Logout_Click(object sender, EventArgs e)
+        {
+            Session.Abandon();
+            Response.Redirect("~/index.aspx");
         }
     }
 }
