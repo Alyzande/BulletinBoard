@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -34,7 +35,7 @@ namespace BulletinBoard
             {
                 DataListItem i = e.Item;
                 //  System.Data.DataRowView r = (System.Data.DataRowView)e.Item.DataItem; // 'r' represents the next row in the table that has been passed here via the 'bind' function.
-                System.Data.DataRowView r = (System.Data.DataRowView)Session["Boards"]; // 'r' represents the next row in the table that has been passed here via the 'bind' function.
+                System.Data.DataRowView r = Session["Boards"] as DataRowView; ; // 'r' represents the next row in the table that has been passed here via the 'bind' function.
 
 
                 // Find the label controls that are associated with this data item.
@@ -79,7 +80,7 @@ namespace BulletinBoard
                     str = Session["LoggedinID"].ToString();
                 }
                 int creatorid = Convert.ToInt32(str);
-                string boardnum = "1";
+                string boardnum = Session["Boards"].ToString();
                 int boardid = int.Parse(boardnum);
                 string creationdate = DateTime.Today.ToString("ddd dd MMM yyyy");
                 string creationtime = DateTime.Now.ToString("HH:mm");
