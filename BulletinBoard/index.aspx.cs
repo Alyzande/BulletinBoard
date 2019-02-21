@@ -51,7 +51,7 @@ namespace BulletinBoard
                         //string abc = Session["LoggedinID"].ToString();
 
                         //update last loggin in date
-                       
+
                         Session["LastLoginDay"] = DateTime.Today.ToString("ddd dd MMM yyyy");
                         Session["LastLoginTime"] = DateTime.Now.ToString("HH:mm");
                         //ErrorLabel.Text = "Logging in as " + Session["LoggedinID"].ToString() + "...";
@@ -64,13 +64,13 @@ namespace BulletinBoard
                             SQLDatabase.DatabaseRow row = users_table.GetRow(n); //get current ID.
                             if (userIdHolder == users_table.GetRow(n)["ID"]) //if userID is the same as it's in the row
                             {
-                                
+
                                 row["LastLoginDate"] = Session["LastLoginDay"].ToString();
                                 row["LastLoginTime"] = Session["LastLoginTime"].ToString();
                                 users_table.Update(row);
                             }
                         }
-                        
+
                         //go to boards page
                         Response.Redirect("~/board.aspx");
                     }

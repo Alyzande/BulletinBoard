@@ -8,8 +8,8 @@ using System.Configuration;
 
 namespace SQLDatabase
 {
-	public class DatabaseRow
-	{
+    public class DatabaseRow
+    {
         Dictionary<string, string> Fields;
 
         public DatabaseRow()
@@ -128,13 +128,13 @@ namespace SQLDatabase
             connection.Close();
         }
 
-    
+
         public DatabaseRow FindRow(string field, string value)
         {
             for (int r = 0; r < RowCount; ++r)
             {
                 DatabaseRow dr = GetRow(r);
-                
+
                 if (dr.ContainsField(field))
                 {
                     if (dr[field] == value) return dr;

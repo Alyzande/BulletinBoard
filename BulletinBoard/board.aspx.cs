@@ -71,7 +71,7 @@ namespace BulletinBoard
 
                 SQLDatabase.DatabaseRow row = boards_table.GetRow(index);   // Get the row from the table.
 
-                Session["Boards"] = row;    // Store this on the Session, so we can access this module in the other page. 
+                Session["Boards"] = row["ID"];    // Store this on the Session, so we can access this module in the other page. 
 
                 Response.Redirect("post.aspx"); // Now to go the other page to view the module information...
             }
