@@ -23,7 +23,9 @@
             <h2>Posts on this Topic</h2>
           <p>topicnamehere</p>
             <p>
-                <asp:Label ID="Label3" runat="server" Text="Label"></asp:Label></p>
+                You are viewing topic number: <asp:Label ID="Label3" runat="server" Text="Label"></asp:Label></p>
+            <p>BoardID: <asp:Label ID="Label4" runat="server" Text="Label"></asp:Label></p>
+
              <asp:DataList ID="DataList2" runat="server" OnItemDataBound="DataList2_ItemDataBound" >
                 <ItemTemplate>
                     <table>
