@@ -64,14 +64,15 @@ namespace BulletinBoard
             if (e.CommandName == "View")    // ViewButton clicked - but which one?
             {
                 // Find the index of the button - which indicates which row...
-
+             
                 int index = int.Parse((string)e.CommandArgument);  // The 'Command Argument' is a string, so turn it into an integer...
 
                 SQLDatabase.DatabaseTable boards_table = new SQLDatabase.DatabaseTable("Boards");   // Need to load the table again, to extract the row in which the button was clicked.
 
                 SQLDatabase.DatabaseRow row = boards_table.GetRow(index);   // Get the row from the table.
 
-                Session["Boards"] = row["ID"];    // Store this on the Session, so we can access this module in the other page. 
+                Session["Boards"] = row;
+                //Session["Boards"] = row["ID"];    // Store this on the Session, so we can access this module in the other page. 
 
                 Response.Redirect("post.aspx"); // Now to go the other page to view the module information...
             }
