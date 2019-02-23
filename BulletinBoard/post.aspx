@@ -21,10 +21,17 @@
             <asp:Button ID="LogoutButton" runat="server" Text="Log Out" OnClick="LogoutButton_Click" />
             <br />
             <h2>Posts on this Topic</h2>
-          <p>topicnamehere</p>
+         
             <p>
                 You are viewing topic number: <asp:Label ID="Label3" runat="server" Text="Label"></asp:Label></p>
-            <p>BoardID: <asp:Label ID="Label4" runat="server" Text="Label"></asp:Label></p>
+            <p>The BoardID should be identical: <asp:Label ID="Label4" runat="server" Text="Label"></asp:Label></p>
+            <p>
+                //for (int i = 0; i < posts_table.RowCount; i++) { }
+
+                //if boardID of posts == ID of Boards,
+                //if (StoredBoardID == r["ID"].ToString())
+                //  then display the info and cycle around again. 
+            </p>
 
              <asp:DataList ID="DataList2" runat="server" OnItemDataBound="DataList2_ItemDataBound" >
                 <ItemTemplate>
