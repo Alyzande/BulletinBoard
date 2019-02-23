@@ -24,7 +24,7 @@ namespace BulletinBoard
 
             posts_table.Bind(DataList2);
 
-            SQLDatabase.DatabaseTable loggedintable = new SQLDatabase.DatabaseTable("Users", "SELECT Username from Users WHERE ID = " + Session["LoggedinID"]);  // get username from Users db where id is the loggedinid passed in session
+           SQLDatabase.DatabaseTable loggedintable = new SQLDatabase.DatabaseTable("Users", "SELECT Username from Users WHERE ID = " + Session["LoggedinID"]);  // get username from Users db where id is the loggedinid passed in session
 
             string Username = loggedintable.GetRow(0)["Username"]; //get username from loggedintable where userid == LoggedinID
 
@@ -33,13 +33,15 @@ namespace BulletinBoard
 
             //bringing in Session["Boards"]
             SQLDatabase.DatabaseRow r = (SQLDatabase.DatabaseRow)Session["Boards"]; // Create r and give it the same info as the row matching Boards
-            string StoredBoardID = r["ID"].ToString(); // Extract the column ID from the row stored in Session["Boards"] and store it in string StoredBoardID
+            string StoredBoardID = r["ID"].ToString(); // Extract the column 'ID' from the row stored in Session["Boards"] and store it in string StoredBoardID
 
-            //checking it, temporary
+            SQLDatabase.DatabaseRow z = posts_table.GetRow(Convert.ToInt32(StoredBoardID));
+
+
             Label3.Text = StoredBoardID;
             if (r["ID"].ToString() != null)
             {
-                Label4.Text = r["ID"].ToString();
+                Label4.Text = z.ToString();
             }
             else Label4.Text = "null";
 
