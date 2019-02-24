@@ -70,11 +70,13 @@ namespace BulletinBoard
                 SQLDatabase.DatabaseTable boards_table = new SQLDatabase.DatabaseTable("Boards");   // Need to load the table again, to extract the row in which the button was clicked.
 
                 SQLDatabase.DatabaseRow row = boards_table.GetRow(index);   // Get the row from the table.
+                Labelthing.Text = row["ID"].ToString();
 
                 Session["Boards"] = row;
                 //Session["Boards"] = row["ID"];    // Store this on the Session, so we can access this module in the other page. 
 
                 Response.Redirect("post.aspx"); // Now to go the other page to view the module information...
+    
             }
         }
 

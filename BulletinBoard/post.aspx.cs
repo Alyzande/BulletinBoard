@@ -20,9 +20,9 @@ namespace BulletinBoard
                 Response.Redirect("~/index.aspx");
             }
             //Checking which user is logged in and posting it.
-            SQLDatabase.DatabaseTable posts_table = new SQLDatabase.DatabaseTable("Posts");   // Load the Posts table  
-
-            posts_table.Bind(DataList2);
+            //SQLDatabase.DatabaseTable posts_table = new SQLDatabase.DatabaseTable("Posts");   // Load the Posts table  
+          
+            //posts_table.Bind(DataList2);
 
            SQLDatabase.DatabaseTable loggedintable = new SQLDatabase.DatabaseTable("Users", "SELECT Username from Users WHERE ID = " + Session["LoggedinID"]);  // get username from Users db where id is the loggedinid passed in session
 
@@ -34,8 +34,11 @@ namespace BulletinBoard
             //bringing in Session["Boards"]
             SQLDatabase.DatabaseRow r = (SQLDatabase.DatabaseRow)Session["Boards"]; // Create r and give it the same info as the row matching Boards
             string StoredBoardID = r["ID"].ToString(); // Extract the column 'ID' from the row stored in Session["Boards"] and store it in string StoredBoardID
+             SQLDatabase.DatabaseTable posts_table = new SQLDatabase.DatabaseTable("Posts", "SELECT * from Posts WHERE BoardID = " + r["ID"].ToString());
 
-            SQLDatabase.DatabaseRow z = posts_table.GetRow(Convert.ToInt32(StoredBoardID));
+             posts_table.Bind(DataList2);
+
+            //SQLDatabase.DatabaseRow z = posts_table.GetRow(Convert.ToInt32(StoredBoardID));
 
 
             Label3.Text = StoredBoardID;
@@ -69,7 +72,6 @@ namespace BulletinBoard
                 DataListItem i = e.Item;
 
                 System.Data.DataRowView r = ((System.Data.DataRowView)e.Item.DataItem); // 'r' represents the next row in the table that has been passed here via the 'bind' function.
-
 
 
 

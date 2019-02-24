@@ -21,8 +21,11 @@
             <asp:Label ID="Label2" runat="server" Text="Users login date displayed here"></asp:Label>
 <br />
             <asp:Button ID="LogoutButton" runat="server" Text="Log Out" OnClick="LogoutButton_Click" />
-            <br />
+            <br />DEBUGGING: 
             <asp:HyperLink ID="HyperLink7" runat="server" NavigateUrl="~/post.aspx" Font-Bold="True" Font-Size="Large">VIEW ALL POSTS</asp:HyperLink>
+            <br />
+            <br />
+            DEBUGGING: You have clicked button for topic number: <asp:Label ID="Labelthing" runat="server" Text="Label"></asp:Label>
             <br />
             <h2>Browse Topics</h2>
             <asp:DataList ID="DataList1" runat="server" OnItemDataBound="DataList1_ItemDataBound" OnItemCommand="DataList1_ItemCommand">

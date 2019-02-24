@@ -26,11 +26,15 @@
                 You are viewing topic number: <asp:Label ID="Label3" runat="server" Text="Label"></asp:Label></p>
             <p>The BoardID should be identical: <asp:Label ID="Label4" runat="server" Text="Label"></asp:Label></p>
             <p>
-                //for (int i = 0; i < posts_table.RowCount; i++) { }
+             
 
-                //if boardID of posts == ID of Boards,
-                //if (StoredBoardID == r["ID"].ToString())
-                //  then display the info and cycle around again. 
+                for (int i = 0; i < posts_table.rowcount; i++)
+                {
+                if posts_table["BoardID"].ToString() == boards_table["ID"].ToString())
+                do stuff;
+                else 
+                continue;
+                }
             </p>
 
              <asp:DataList ID="DataList2" runat="server" OnItemDataBound="DataList2_ItemDataBound" >
